@@ -17,8 +17,8 @@ const RestaurantCard = ({
           alt="restaurant-image"
         />
         <h3>{name}</h3>
-        <p>{cuisines.join(", ")}</p>
-        <p>{avgRatingString} stars</p>
+        <p className="cuisines">{cuisines.join(", ")}</p>
+        <p className="rating">{avgRatingString} stars</p>
       </div>
     </>
   );

@@ -5,6 +5,9 @@ import Header from "./components/Header";                // Default Import
 // import * as XYZ from "./components/Header";          // When everything is name imported, use XYZ.Header
 import Footer from "./components/Footer";
 import Body from "./components/Body";
+import About from './components/About'
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
 
@@ -138,5 +141,16 @@ const AppLayout = () => (
   </>
 );
 
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <AppLayout />,
+  },
+  {
+    path: '/about',
+    element: <About />
+  }
+])
+
 const root = ReactDOM.createRoot(document.querySelector("#root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
