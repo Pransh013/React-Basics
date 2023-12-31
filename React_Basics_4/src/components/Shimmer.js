@@ -14,8 +14,7 @@ const Shimmer = () => {
   return (
     <>
       <div className="card-container shimmer">
-        {Array(10).fill("").map((e, index) => (<Cards key={index}/>))}
-        
+        {Array(12).fill("").map((e, index) => (<Cards key={index}/>))}
       </div>
     </>
   );
