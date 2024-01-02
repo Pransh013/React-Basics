@@ -134,6 +134,11 @@ input {
   border-radius: 5px;
 }
 
+.linktores {
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+}
+
 .restaurant-cards .cuisines {
   font-size: 14px;
 }

@@ -62,7 +62,7 @@ const Body = () => {
         <div className="card-container">
 
           {filteredRestaurants.length === 0 ? <h1>No items matching your search</h1> : filteredRestaurants.map((data) => (
-            <Link to={"/restaurant/" + data.info.id} key={data.info.id}><RestaurantCard {...data.info} /></Link>
+            <Link to={"/restaurant/" + data.info.id} className="linktores" key={data.info.id}><RestaurantCard {...data.info} /></Link>
           ))}
         </div>
       </div>

@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import RestaurantDetails from "./components/RestaurantDetails";
+import ProfileClass from "./components/ProfileClass";
 
 
 
@@ -158,6 +159,12 @@ const appRouter = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+        children: [
+          {
+            path : '/about/profileclass',
+            element : <ProfileClass/>
+          },
+        ]
       },
       {
         path: '/contact',
