@@ -10,7 +10,6 @@ class ProfileClass extends React.Component {
       avatar_url: '',
       address: '',
     };
-    console.log('constructor');
   }
 
   async componentDidMount() {
@@ -18,8 +17,6 @@ class ProfileClass extends React.Component {
     const data = await fetch('https://dummyjson.com/users')
     const json = await data.json();
     this.setState(json.users[0]);
-    console.log('api call')
-    console.log(json.users[0])
   }
 
   componentDidUpdate() {
@@ -41,7 +38,6 @@ class ProfileClass extends React.Component {
         <img src={this.state.image} alt="" />
         <h3>Location : {this.state.address.city}</h3>
         <h3>University : {this.state.university}</h3>
-        {console.log('render')}
       </>
     );
   }

@@ -1,14 +1,11 @@
-import { RestaurantCardDetails } from "../config";
 import RestaurantCard from "./Cards";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/Helper";
+import useOnline from "../utils/useOnline";
+import { RES_DATA_URL } from "../config";
 
-function filterData(searchText, restaurants) {
-  return restaurants.filter((data) =>
-    data?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
-  );
-}
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -29,7 +26,7 @@ const Body = () => {
   }, [])
 
   async function getRestaurantData() {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5060007&lng=73.7988504&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(RES_DATA_URL);
     const json = await data.json();
     setAllRestaurants((json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
     setFilteredRestaurants((json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants))
@@ -37,6 +34,11 @@ const Body = () => {
 
   // Render first then useEffect
   // console.log("render");
+
+  const isOnline = useOnline();
+
+  if(!isOnline) return <h1>Looks like you are offline</h1>
+
   return allRestaurants?.length === 0 ? <Shimmer /> : (
     <>
       <div className="main">

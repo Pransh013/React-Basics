@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 // import { Header } from "./components/Header";            Named import             {not same as destructuring}           
 import Header from "./components/Header";                // Default Import
@@ -12,11 +12,14 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import RestaurantDetails from "./components/RestaurantDetails";
 import ProfileClass from "./components/ProfileClass";
+import Shimmer from "./components/Shimmer";
 
 
+// Lazy loading, Dynamic import, Chunking, Code SPlitting, Dynamic Bundling, On demand loading
+const Instamart = lazy(() => import('./components/Instamart'))
+// On lazy loading, react will give error on render as instamart.js file takes few milliseconds to load so we use suspense
 
 // Optional Chaining => ?    restaurantCardDetails[0].info?.name
-
 // const RestaurantCard = (props) => {
 //   console.log(props);
 //   return (
@@ -150,7 +153,7 @@ const appRouter = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <Error/>,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -161,8 +164,8 @@ const appRouter = createBrowserRouter([
         element: <About />,
         children: [
           {
-            path : '/about/profileclass',
-            element : <ProfileClass/>
+            path: '/about/profileclass',
+            element: <ProfileClass />
           },
         ]
       },
@@ -177,6 +180,14 @@ const appRouter = createBrowserRouter([
       {
         path: '/restaurant/:resId',
         element: <RestaurantDetails />,
+      },
+      {
+        path: '/instamart',
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ]
   },
