@@ -8,7 +8,7 @@ const RestaurantDetails = () => {
   const { resId } = useParams();
   
   const restaurant = useRestaurant(resId);
-  
+
   return (!restaurant) ? <Shimmer/> : (
     <>
       <div>
@@ -20,7 +20,7 @@ const RestaurantDetails = () => {
       <div>
         <h2>Menu</h2>
         <ul>
-        {restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((data) => <li key={data?.card?.info?.id}>{data?.card?.info?.name}</li>)}
+        {restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.map((data) => <li key={data?.card?.info?.id}>{data?.card?.info?.name}</li>)}
         </ul>
       </div>
     </>

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
-// export const Header = () => (                  Named export
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const {user} = useContext(UserContext)
   return (
     <>
       <div className="header">
@@ -14,12 +15,36 @@ const Header = () => {
           />
         </Link>
         <ul>
-          <Link to="/" className="nounderline"><li>Home</li></Link>
-          <Link to="/about" className="nounderline"><li>About</li></Link>
-          <Link to="/contact" className="nounderline"><li>Contact</li></Link>
-          <Link to="/cart" className="nounderline"><li>Cart</li></Link>
-          <Link to="/instamart" className="nounderline"><li>Instamart</li></Link>
-          <li>{isLoggedIn ? <button className="login-btn" onClick={() => setIsLoggedIn(false)}>Logout</button> : <button className="login-btn" onClick={() => setIsLoggedIn(true)}>Login</button>}</li>
+          <Link to="/" className="nounderline">
+            <li>Home</li>
+          </Link>
+          <Link to="/about" className="nounderline">
+            <li>About</li>
+          </Link>
+          <Link to="/contact" className="nounderline">
+            <li>Contact</li>
+          </Link>
+          <Link to="/cart" className="nounderline">
+            <li>Cart</li>
+          </Link>
+          <Link to="/instamart" className="nounderline">
+            <li>Instamart</li>
+          </Link>
+          <li className="nounderline">{user.name}</li>
+          <li>
+            {isLoggedIn ? (
+              <button
+                className="login-btn"
+                onClick={() => setIsLoggedIn(false)}
+              >
+                Logout
+              </button>
+            ) : (
+              <button className="login-btn" onClick={() => setIsLoggedIn(true)}>
+                Login
+              </button>
+            )}
+          </li>
         </ul>
       </div>
     </>
@@ -27,5 +52,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// We can just export default one thing
